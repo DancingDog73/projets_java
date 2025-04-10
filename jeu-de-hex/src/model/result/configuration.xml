@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <nbSimulations>50</nbSimulations>
+    <budget1>100</budget1>    
+    <budget2>100</budget2>
+    <explorationParam>1.414213562</explorationParam>
+</config>
