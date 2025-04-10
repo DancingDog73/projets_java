@@ -1,0 +1,50 @@
+Facts
+    taille = 1.6
+    poids = 120
+    fievre = 39
+    frissons
+    DouleursRetroOculaires
+    touxSeche
+    douleursThoraciques
+    affaiblissements
+
+Formulas
+    tailleCarree = taille*taille
+    IMC = poids/tailleCarree
+    sommeSymptomeGrippe = symptome1 + symptome2 + symptome3 + symptome4 + symptome5 + symptome6
+    sommeSymptomeRhume = symptome10 + symptome9 + symptome8 + symptome7
+
+Known Rules
+    Si rhume et personneFragile alors complications
+    Si complications et douleursThoraciques alors pneumonie
+    Si age < 5 ou age > 65 alors complications
+    Si IMC > 39 et grippe alors complications
+    Si fievre > 38 alors symptome1 = 1
+    Si fievre < 39 alors symptome1 = 0
+    Si DouleursRetroOculaires alors symptome2 = 1
+    Si non DouleursRetroOculaires alors symptome2 = 0
+    Si touxSeche ou irritationGorge alors symptome3 = 1
+    Si non touxSeche et non irritationGorge alors symptome3 = 0
+    Si peauRouge alors symptome4 = 1
+    Si non peauRouge alors symptome4 = 0
+    Si affaiblissements ou fatigue alors symptome5 = 1
+    Si non affaiblissements et non fatigue alors symptome5 = 0
+    Si frissons alors symptome6 = 1
+    Si non frissons alors symptome6 = 0
+    Si sommeSymptomeGrippe > 3 alors grippe
+    Si grippe alors non rhume
+    Si irritationGorge alors symptome7 = 1
+    Si non irritationGorge alors symptome7 = 0
+    Si eternuement alors symptome8 = 1
+    Si non eternuement alors symptome8 = 0
+    Si ecoulementNasal alors symptome9 = 1
+    Si non ecoulementNasal alors symptome9 = 0
+    Si faibleToux  alors symptome10 = 1
+    Si non faibleToux  alors symptome10 = 0
+    Si rhume et mauxOreille alors otite
+    Si sommeSymptomeRhume > 2 alors rhume
+    Si rhume alors non grippe
+    Si rhume ou grippe alors traitement est repos
+
+
+    

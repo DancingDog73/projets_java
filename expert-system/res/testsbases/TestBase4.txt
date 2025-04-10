@@ -1,0 +1,9 @@
+Facts
+    chaud et froid
+    soleil est auZenith oux pluie = 10
+    pauvre ou riche
+
+Formulas
+
+Known Rules
+    

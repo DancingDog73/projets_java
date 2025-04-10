@@ -1,0 +1,11 @@
+Facts
+    revenus > 5000
+    liberte est bonheur
+    m = 4
+
+
+Formulas
+    e = m * c
+
+Known Rules
+    

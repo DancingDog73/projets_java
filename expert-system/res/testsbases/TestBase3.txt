@@ -1,0 +1,11 @@
+Facts
+    chaud ou froid
+    soleil est auZenith et pluie = 10
+    air est chaud oux riche
+    chaud oux riche
+
+
+Formulas
+
+Known Rules
+    

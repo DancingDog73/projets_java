@@ -1,0 +1,141 @@
+<project name="playerGame" default="run" basedir=".">
+<property name="app.name" value="playerGame"/>
+<property name="app.version" value="0.1"/>
+<property name="app.fullname" value="${app.name}-${app.version}"/>
+<property name="build.home" value="${basedir}/build"/>
+<property name="build.test.home" value="${basedir}/build/test"/>
+<property name="dist.home" value="${basedir}/dist"/>
+<property name="doc.home" value="${basedir}/doc"/>
+<property name="src.home" value="${basedir}/src"/>
+<property name="src.test.home" value="${basedir}/test"/>
+<property name="test.report.home" value="${basedir}/build/test/results"/>
+<property name="lib.home" value="${basedir}/lib"/>
+<property name="javac.encoding" value="UTF-8"/>
+<property name="resources.home" value="${basedir}/resources" />
+<property name="resources.home.parent" value="${basedir}" />
+<!--
+ ==================== Compile options =========================== 
+-->
+<property name="compile.debug" value="true"/>
+<property name="compile.deprecation" value="false"/>
+<property name="compile.optimize" value="true"/>
+<!--
+ ==================== Compilation Classpath =========================== 
+-->
+<path id="compile.classpath">
+<fileset dir="${lib.home}">
+<include name="**/*.jar"/>
+</fileset>
+</path>
+<!--
+ ==================== All Target ====================================== 
+-->
+<target name="all" depends="clean,compile" description="Clean build and dist directories, then compile"/>
+<!--
+ ==================== Clean Target ==================================== 
+-->
+<target name="clean" description="Delete old build and dist directories">
+<delete dir="${build.home}"/>
+<delete dir="${build.test.home}"/>
+<delete dir="${dist.home}"/>
+<delete dir="${test.report.home}"/>
+</target>
+<!--
+ ==================== Prepare Target ================================== 
+-->
+<target name="prepare">
+<mkdir dir="${build.home}"/>
+<mkdir dir="${build.test.home}"/>
+<mkdir dir="${dist.home}"/>
+<mkdir dir="${test.report.home}"/>
+</target>
+<!--
+ ==================== Compile Target ================================== 
+-->
+<target name="compile" depends="prepare" description="Compile Java sources">
+<javac srcdir="${src.home}" destdir="${build.home}" debug="${compile.debug}" deprecation="${compile.deprecation}" optimize="${compile.optimize}" encoding="${javac.encoding}" includeantruntime="true">
+<classpath refid="compile.classpath"/>
+</javac>
+<!--
+ 
+        <javac srcdir="${src.test.home}" destdir="${build.test.home}"> 
+            <classpath>
+                <pathelement location="${build.home}"/>
+                <path refid="compile.classpath"/>
+            </classpath>
+
+        </javac> 
+-->
+<!-- Copy application resources -->
+<copy todir="${build.home}">
+<fileset dir="${src.home}" excludes="**/*.java"/>
+<fileset dir="${resources.home.parent}" includes="resources/**"/>
+</copy>
+</target>
+<!--
+ ==================== Dist Target ===================================== 
+-->
+<target name="dist" depends="clean,compile,javadoc" description="Create binary distribution">
+<copy todir="${dist.home}/lib">
+<fileset dir="${lib.home}"/>
+</copy>
+<!-- Create application JAR file -->
+<jar jarfile="${dist.home}/${app.fullname}.jar" basedir="${build.home}">
+<manifest>
+<attribute name="Main-Class" value="personnagesJeu.MainClass"/>
+</manifest>
+</jar>
+<!--
+ Attention : copie ad-hoc pour satisfaire immédiatement une mise à jour de dépendance, car le projet "jeuCombat" a besoin de cette librairie 
+-->
+<copy file="${dist.home}/${app.fullname}.jar" todir="${basedir}/../fightGame/lib"/>
+</target>
+<!--
+ ==================== Javadoc Target ================================== 
+-->
+<target name="javadoc" depends="compile" description="Create Javadoc API documentation">
+<mkdir dir="${doc.home}/api"/>
+<javadoc sourcepath="${src.home}" destdir="${doc.home}/api" packagenames="*">
+<classpath>
+<fileset dir="${lib.home}">
+<include name="**/*.jar"/>
+</fileset>
+</classpath>
+</javadoc>
+</target>
+<!--
+ ==================== Run Target ================================== 
+-->
+<target name="run" depends="dist">
+<java jar="${dist.home}/${app.fullname}.jar" fork="true"/>
+</target>
+<!--
+ ==================== Test Target ===================================== 
+-->
+<target name="test" depends="clean,compile,dist">
+<junit fork="true" printsummary="withOutAndErr" haltonfailure="false" showoutput="true" logfailedtests="true">
+<classpath>
+<pathelement location="${build.test.home}"/>
+<pathelement location="${build.home}"/>
+<path refid="compile.classpath"/>
+</classpath>
+<formatter type="xml"/>
+<batchtest todir="${test.report.home}">
+<!--
+    
+                    <fileset dir="${build.test.home}">
+                        <include name="**/*Test.class"/>
+                    </fileset> 
+                
+-->
+<fileset dir="${build.test.home}" includes="**/*Test.class"/>
+</batchtest>
+</junit>
+</target>
+<target name="junitreport" depends="test">
+<junitreport todir="${test.report.home}">
+<fileset dir="${test.report.home}" includes="TEST-*.xml"/>
+<report todir="${test.report.home}"/>
+</junitreport>
+</target>
+</project>

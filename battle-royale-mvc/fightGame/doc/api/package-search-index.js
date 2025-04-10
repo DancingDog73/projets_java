@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"modele"},{"l":"modele.factories.playerfactories"},{"l":"modele.gameElements"},{"l":"modele.gameElements.powerups"},{"l":"modele.gameElements.weapons"},{"l":"modele.strategies.fillingstrategies"},{"l":"modele.strategies.playerstrategies"},{"l":"view"}];updateSearchResults();

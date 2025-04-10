@@ -1,0 +1,12 @@
+Facts
+    quete est bonheur
+    depenses = 5000 et pauvre
+    c = 4 ou g = 10
+    mm = 4
+
+
+Formulas
+    e = m * c
+
+Known Rules
+    

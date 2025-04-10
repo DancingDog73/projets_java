@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="Systèmes experts" basedir=".">
+    <property name="systems.sources.dir" value="src"/>
+    <property name="systems.bin.dir" value="build"/>
+    <property name="systems.lib.dir" value="lib"/>
+    <property name="javafx.dir" value="lib/javafx-sdk-17.0.10/lib/"/>
+    <property name="javafx.modules" value="javafx.controls"/>
+
+    <path id="systems.classpath">
+        <fileset dir = "${systems.lib.dir}">
+            <include name="*.jar"/>
+        </fileset>
+        <fileset dir="lib/javafx-sdk-17.0.10/lib/" defaultexcludes="yes">
+            <include name="*.jar" />
+        </fileset>
+        <pathelement location="${systems.lib.dir}"/>
+    </path>
+    <target name="compile" description="Compilation de toutes les classes">
+    	<javac srcdir="src/systems/base" destdir="build"></javac>
+    	<javac srcdir="src/systems/expertsystem" destdir="build"></javac>
+    	<javac srcdir="src/systems/facts" destdir="build"></javac>
+    	<javac srcdir="src/systems/inferenceengines" destdir="build"></javac>
+    	
+    	<javac srcdir="src/systems/rules" destdir="build"></javac>
+        <javac srcdir="src/systems/fx" destdir="build" modulepath="${javafx.dir}">
+            <compilerarg line="--add-modules ${javafx.modules}"/>
+            <classpath refid="systems.classpath"/>
+        </javac>
+    </target>
+    <target name="init">
+        <echo message="Initialisation du projet ${ant.project.name}"/>
+        <delete dir="${basedir}/build"/>
+        <mkdir dir="${basedir}/build"/>
+    </target>
+        <target name="initjavadoc">
+        <delete dir="${basedir}/doc/javadoc"/>
+        <mkdir dir="${basedir}/doc/javadoc"/>
+    </target>
+    <target name="run" depends="compile"> 
+        <java classname="systems.fx.MainInterface" classpath="build" modulepath="${javafx.dir}" fork="true"> 
+            <jvmarg line="--add-modules ${javafx.modules}"/>
+            <classpath refid="systems.classpath"/>
+        </java>
+    </target>
+    <target name="javadoc">
+        <javadoc packagenames="src/systems" sourcepath="src/systems/" destdir="doc/javadoc" classpathref="systems.classpath"  access="private" noqualifier="all">
+            <fileset dir="src/systems/" defaultexcludes="yes">
+                <include name="**" />
+            </fileset>
+        </javadoc>
+    </target>
+
+    <target name="packaging" depends="compile">
+        <fileset dir="${javafx.modules}" defaultexcludes="yes">
+            <include name="**/*.Class" />
+        </fileset>
+        <jar jarfile="systems-ant.jar" basedir="${systems.bin.dir}" manifest="${basedir}/Manifest.txt"/>
+    </target>
+</project>
+

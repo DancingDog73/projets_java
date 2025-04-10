@@ -1,0 +1,17 @@
+Facts
+    riche
+    heureux 
+    fortune > 1000000
+    housesCount > 5
+    problemsCount < 1
+    profession est CEO
+    humeur est bonne
+
+Formulas
+    argent = liberte
+    revenus = salaire*12+primes-impots
+    i = j+1
+    e = m*c
+
+Known Rules
+    

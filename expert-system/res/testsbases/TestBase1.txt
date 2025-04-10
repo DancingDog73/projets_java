@@ -1,0 +1,28 @@
+Facts
+    chaud
+    soilleux et invivable
+    temperature = 50
+    pluie = 10
+    air est chaud
+    soleil est auZenith
+    liberte = 10000000000000000
+    salaire = 1000
+    primes = 300
+    impots = 5000
+    j = 1
+    m = 4
+    c = 5
+
+Formulas
+    conditions = temperature / pluie
+    argent = liberte
+    revenus = salaire*12+primes-impots
+    i = j+1
+    e = m*c
+    temperatureD = 37
+
+Known Rules
+    Si temperature > 50 alors chaud
+    Si chaud alors soleil est auZenith
+    Si air est chaud alors invivable
+    

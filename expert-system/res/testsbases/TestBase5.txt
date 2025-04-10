@@ -1,0 +1,11 @@
+Facts
+    revenus > depenses
+    liberte est _quete
+    m = mm
+
+
+Formulas
+    e = m * c
+
+Known Rules
+    

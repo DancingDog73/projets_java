@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Created-By: 
+    Bah Bobo Kadiatou
+    Bakeloula Jonathan
+    Kagbere Tchontchoko
+    Nanmedigou Yendoumban
+Main-Class: systems.fx.MainInterface

@@ -1,0 +1,48 @@
+Facts
+	energieIncidente = 340
+	energieReflechie = 60
+	forcageAnthropique
+	rechauffement est extreme
+	tauxOxygene = 0.21
+	tauxDiazote > 0.78
+	rechauffementGlobal > 1.5
+	forcageAnthropique
+	scenarioClimat est catastrophique
+	augmentationNiveauMer
+	temperature = 25 
+
+Formulas
+	albedo = energieReflechie / energieIncidente
+
+Known Rules
+	Si temperature < 0 ou temperature > 50 alors conditionsExtremes
+	Si temperature > 20 et temperature < 30 alors climat est Tempere
+	Si temperature > 30 et temperature < 40 alors climat est Mediteranneen
+	Si climat est Extreme alors danslamerde
+	Si albdedo = 0.3 alors vivable
+	Si temperature > 100 alors conditionsExtremes
+	Si tauxOxygene < 0.19 alors non vivable
+	Si rechauffement est extreme alors dilatationThermique
+	Si dilatationThermique et fonteDesGlaciers alors augmentationNiveauMer
+	Si conditionsExtremes alors augmentationNiveauMer et fonteDesGlaciers
+	Si conditionsExtremes alors augmentationCO2
+	Si augmentationNiveauMer alors erosions
+	Si tauxOxygeneDansAtmosphere < 0.195 alors non vivable
+	Si non vivable alors disparitionDeLaVie
+	Si tauxVapeurDeau = 0.8 et tauxCO2 = 0.15 et tauxDiazote < 0.05 et tauxDioxygene = 0 alors atmosphere est atmospherePrimitive
+	Si tauxDiazote = 0.78 et tauxDioxygene > 0.19 alors atmosphere est atmosphereActuelle
+	Si EreGeologique est paleoarcheen alors apparitionDelaVie
+	Si rechauffementGlobal > 2 alors rechauffement est extreme
+	Si rechauffement est extreme  alors conditionsExtremes
+	Si emissionsGES alors ozone est mauvaisEtat
+	Si forcageAnthropique alors emissionsGES
+	Si croissanceEconomique alors emissionsGES
+	Si croissanceEconomique alors forcageAnthropique
+	Si augmentationTransport alors forcageAnthropique
+	Si croissanceDemographique alors forcageAnthropique
+	Si EreGeologique est anthropocene alors emissionsGES
+	Si EreGeologique est anthropocene alors scenarioClimat est catastrophique
+	Si scenarioClimat est catastrophique alors emissionsGES
+	Si croissanceEconomique et scenarioClimat est catastrophique alors merde
+	Si dilatationThermique ou rechauffementGlobal > 2 alors forcageAnthropique
+	Si forcageAnthropique et albedo < 0.2 ou non vivable alors chercherPlanete

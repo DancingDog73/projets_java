@@ -1,0 +1,22 @@
+Facts
+    transmissionDeValeurs
+    professionDuPere est CEO
+    valeurDuPere est travail
+    impots = 5000
+    depenses = 40000
+    societe est reelle
+    seuilDePauvrete = 10000
+
+Formulas
+    revenusDuPere = salaireDuPere * 12 + primes - impots
+    excedent = revenusDuPere - depenses
+
+Known Rules
+    Si reproductionSociale alors professionDuFils est CEO
+    si professionDuFils est _professionDuPere alors filsEstHeritier
+    Si filsEstHeritier et valeurDuFils est travail alors revenusDuFils = revenusDuPere
+    Si societe est reelle alors reproductionSociale
+    Si transmissionDeValeurs alors valeurDuFils est _valeurDuPere
+    Si valeurDuPere est travail alors primes = 3000
+    Si professionDuPere est CEO alors salaireDuPere = 6000
+    Si excedent > seuilDePauvrete alors riche
