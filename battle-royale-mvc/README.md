@@ -1,0 +1,3 @@
+project : Battle Royale game in Java. 
+Le jeu est un battle royale qui se déroule sur une grille avec 4 joueurs, pour se déplacer, il faut utiliser la souris. Le jeu se joue au tour par tour. A chaque tour, chaque joueur peut : poser une mine ou une bombe,  effectuer un tir horizontal ou vertical, passer son tour pour économiser sonn énergie. 
+Commande pour lancer le jeu : dans le répertoire fightGame lancer la commande ant run.
